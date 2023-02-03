@@ -1,0 +1,6 @@
+#task-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 1rem
+}
