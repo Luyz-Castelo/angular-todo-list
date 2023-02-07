@@ -1,15 +1,17 @@
-<div>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" id="task-form">
-    <div>
-      <label for="task-name"> task name </label>
-      <input id="task-name" formControlName="taskName" type="text">
-    </div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" id="task-form">
+  <div class="flex-direction-column">
+    <label for="task-name">task name</label>
+    <input id="task-name" formControlName="taskName" type="text">
+  </div>
 
-    <div>
-      <label for="due-date"> due date </label>
-      <input id="due-date" formControlName="dueDate" type="text">
-    </div>
+  <div class="flex-direction-column">
+    <label for="due-date">due date</label>
+    <input id="due-date" formControlName="dueDate" type="text">
+  </div>
 
-    <button class="button" type="submit">Submit</button>
-  </form>
-</div>
+  <div class="flex-align-center">
+    <input id="is-complete" type="checkbox" formControlName="isComplete">
+    <label for="is-complete">Is the task complete?</label>
+  </div>
+  <button class="button" type="submit" [disabled]="this.form.invalid ? true : false">Submit</button>
+</form>

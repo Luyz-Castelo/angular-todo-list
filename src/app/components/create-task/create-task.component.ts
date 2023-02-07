@@ -1,6 +1,6 @@
 import { TaskService } from './../../services/task.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms'
+import { FormBuilder, Validators } from '@angular/forms'
 import { Task } from 'src/app/types/task';
 
 @Component({
@@ -11,22 +11,27 @@ import { Task } from 'src/app/types/task';
 export class CreateTaskComponent implements OnInit {
 
   form = this.formBuilder.group({
-    taskName: '',
-    dueDate: '',
+    taskName: ['', Validators.required],
+    dueDate: ['', Validators.required],
+    isComplete: [false],
   })
 
   constructor(private formBuilder: FormBuilder, private taskService: TaskService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
   onSubmit(): void {
     const task: Task = {
+      id: crypto.randomUUID(),
       taskName: this.form.get('taskName')?.value || '',
       dueDate: this.form.get('dueDate')?.value || '',
+      isComplete: this.form.get('isComplete')?.value || false,
     }
 
-    this.taskService.addTask(task)
-    this.taskService.saveToLocalStorage(task)
+    const storageKey = task.isComplete ? 'completeTasks' : 'incompleteTasks'
+
+    this.taskService.addTask(task, storageKey)
     this.resetForm()
   }
 

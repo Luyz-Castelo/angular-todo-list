@@ -1,0 +1,32 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: .5rem;
+}
+
+#complete-tasks {
+  margin-bottom: 3rem;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #ddd;
+}
+
+td:last-of-type {
+  text-align: center;
+}
+
+svg {
+  padding: 2px;
+  cursor: pointer;
+}
+
+h1 {
+  margin: 0;
+}
